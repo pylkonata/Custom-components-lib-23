@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './Button.module.scss';
 
-type VariantBtn = 'text' | 'contained' | 'outlined';
-type SizeBtn = 'small' | 'medium' | 'large';
+export type VariantBtn = 'text' | 'contained' | 'outlined';
+export type SizeBtn = 'small' | 'medium' | 'large';
 
-interface ButtonProps {
+export interface ButtonProps {
 	variant: VariantBtn;
 	size: SizeBtn;
 	onClick?: () => void;
@@ -19,7 +19,7 @@ const Button = ({
 	children,
 	...props
 }: ButtonProps) => {
-	const classStyles = [s.btn, s[variant], s[size]];
+	const classStyles = [s['btn'], s[variant], s[size]];
 	return (
 		<button className={classStyles.join(' ')} disabled={disabled} onClick={onClick} {...props}>
 			{children}
