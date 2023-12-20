@@ -5,7 +5,7 @@ export type VariantBtn = 'text' | 'contained' | 'outlined';
 export type SizeBtn = 'small' | 'medium' | 'large';
 
 export interface ButtonProps {
-	variant: VariantBtn;
+	variant?: VariantBtn;
 	size: SizeBtn;
 	onClick?: () => void;
 	disabled?: boolean;
