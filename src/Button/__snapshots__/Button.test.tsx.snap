@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button render default button 1`] = `
+<button
+  class="btn contained medium"
+>
+  Default button
+</button>
+`;
+
+exports[`Button render disabled button with not call onClick 1`] = `
+<button
+  class="btn outlined large"
+  disabled=""
+>
+  Disabled button
+</button>
+`;
