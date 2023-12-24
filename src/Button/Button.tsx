@@ -21,7 +21,12 @@ const Button = ({
 }: ButtonProps) => {
 	const classStyles = [s['btn'], s[variant], s[size]];
 	return (
-		<button className={classStyles.join(' ')} disabled={disabled} onClick={onClick} {...props}>
+		<button
+			className={classStyles.join(' ')}
+			disabled={disabled}
+			onClick={onClick}
+			{...props}
+		>
 			{children}
 		</button>
 	);
