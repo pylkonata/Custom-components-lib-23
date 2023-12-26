@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import { ChangeEvent, useEffect, useId, useRef, useState } from 'react';
 import s from './TextField.module.scss';
 
 type VariantTextField = 'outlined' | 'filled' | 'standard';
@@ -6,18 +6,73 @@ interface ITextFieldProps {
 	label: string;
 	variant: VariantTextField;
 	error?: boolean;
+	errorText?: string;
 	disabled?: boolean;
 }
-const TextField = ({ label, variant, error, disabled = false, ...props }: ITextFieldProps) => {
+
+const TextField = ({
+	label,
+	variant,
+	error,
+	errorText,
+	disabled = false,
+	...props
+}: ITextFieldProps) => {
 	const id = useId();
+	const [focusState, setFocusState] = useState(false);
+	const [value, setValue] = useState('');
+	const [labelWidth, setLabelWidth] = useState(0);
+	const labelRef = useRef<HTMLLabelElement>(null);
+
+	useEffect(() => {
+		setLabelWidth(labelRef.current ? labelRef.current.getBoundingClientRect().width + 6 : 0);
+		console.log(labelRef.current?.getBoundingClientRect().width);
+	}, [labelRef]);
+
+	const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value);
+	};
+	const containerClasses = [
+		s['container'],
+		s[variant],
+		focusState ? s['focusedCover'] : '',
+		error ? s['error'] : '',
+		disabled ? s['disabledContainer'] : '',
+	].join(' ');
+
+	const labelClasses = [
+		s['label'],
+		focusState ? s['focused'] : '',
+		error ? s['errorLabel'] : '',
+	].join(' ');
 
 	return (
-		<div className={s[variant]}>
-			<label className={s.label} htmlFor={id}>
-				{label}
-			</label>
-			<input id={id} className={s.input} type='text' disabled={disabled} {...props} />
-			{error && <p>Some error</p>}
+		<div className={s['wrapper']}>
+			<div className={containerClasses}>
+				<label className={labelClasses} htmlFor={id} ref={labelRef}>
+					{error ? 'Error' : label}
+				</label>
+				<p
+					className={`${focusState ? `${s['coverFocused']} ` : ''} ${s['cover']}`}
+					style={{ width: labelWidth }}
+				/>
+				<input
+					id={id}
+					className={s.input}
+					type='text'
+					disabled={disabled}
+					value={value}
+					onFocus={() => {
+						setFocusState(true);
+					}}
+					onBlur={() => {
+						setFocusState(Boolean(value));
+					}}
+					onChange={onChangeInput}
+					{...props}
+				/>
+			</div>
+			{errorText && <p className={s['errorText']}>{errorText}</p>}
 		</div>
 	);
 };
