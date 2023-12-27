@@ -35,7 +35,6 @@ const TextField = ({
 	const containerClasses = [
 		s['container'],
 		s[variant],
-		focusState ? s['focusedCover'] : '',
 		error ? s['error'] : '',
 		disabled ? s['disabledContainer'] : '',
 	].join(' ');
@@ -52,10 +51,6 @@ const TextField = ({
 				<label className={labelClasses} htmlFor={id} ref={labelRef}>
 					{error ? 'Error' : label}
 				</label>
-				<p
-					className={`${focusState ? `${s['coverFocused']} ` : ''} ${s['cover']}`}
-					style={{ width: labelWidth }}
-				/>
 				<input
 					id={id}
 					className={s.input}
@@ -70,6 +65,10 @@ const TextField = ({
 					}}
 					onChange={onChangeInput}
 					{...props}
+				/>
+				<p
+					className={`${focusState ? `${s['coverFocused']} ` : ''} ${s['cover']}`}
+					style={{ width: labelWidth }}
 				/>
 			</div>
 			{errorText && <p className={s['errorText']}>{errorText}</p>}
