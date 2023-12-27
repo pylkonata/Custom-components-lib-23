@@ -25,7 +25,7 @@ const TextField = ({
 	const labelRef = useRef<HTMLLabelElement>(null);
 
 	useEffect(() => {
-		setLabelWidth(labelRef.current ? labelRef.current.getBoundingClientRect().width + 6 : 0);
+		setLabelWidth(labelRef.current ? labelRef.current.getBoundingClientRect().width : 0);
 	}, [labelRef]);
 
 	const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
