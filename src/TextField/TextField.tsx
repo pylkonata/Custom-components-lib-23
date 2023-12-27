@@ -26,7 +26,6 @@ const TextField = ({
 
 	useEffect(() => {
 		setLabelWidth(labelRef.current ? labelRef.current.getBoundingClientRect().width + 6 : 0);
-		console.log(labelRef.current?.getBoundingClientRect().width);
 	}, [labelRef]);
 
 	const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +35,7 @@ const TextField = ({
 		s['container'],
 		s[variant],
 		error ? s['error'] : '',
-		disabled ? s['disabledContainer'] : '',
+		disabled ? s['disabled'] : '',
 	].join(' ');
 
 	const labelClasses = [
@@ -66,10 +65,12 @@ const TextField = ({
 					onChange={onChangeInput}
 					{...props}
 				/>
-				<p
-					className={`${focusState ? `${s['coverFocused']} ` : ''} ${s['cover']}`}
-					style={{ width: labelWidth }}
-				/>
+				{variant === 'outlined' && (
+					<p
+						className={`${focusState ? `${s['coverFocused']} ` : ''} ${s['cover']}`}
+						style={{ width: labelWidth }}
+					/>
+				)}
 			</div>
 			{errorText && <p className={s['errorText']}>{errorText}</p>}
 		</div>
