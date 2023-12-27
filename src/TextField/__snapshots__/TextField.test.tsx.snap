@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField render basic TextField 1`] = `
+<div
+  class="wrapper"
+  data-testid="textField"
+>
+  <div
+    class="container outlined  "
+    data-testid="container"
+  >
+    <label
+      class="label  "
+      for=":r0:"
+    >
+      Label text
+    </label>
+    <input
+      class="input"
+      data-testid="input"
+      id=":r0:"
+      type="text"
+      value=""
+    />
+    <p
+      class=" cover"
+      data-testid="cover"
+      style="width: 0px;"
+    />
+  </div>
+</div>
+`;

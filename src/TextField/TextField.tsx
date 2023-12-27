@@ -45,12 +45,13 @@ const TextField = ({
 	].join(' ');
 
 	return (
-		<div className={s['wrapper']}>
-			<div className={containerClasses}>
+		<div className={s['wrapper']} data-testid='textField'>
+			<div className={containerClasses} data-testid='container'>
 				<label className={labelClasses} htmlFor={id} ref={labelRef}>
 					{error ? 'Error' : label}
 				</label>
 				<input
+					data-testid='input'
 					id={id}
 					className={s.input}
 					type='text'
@@ -69,6 +70,7 @@ const TextField = ({
 					<p
 						className={`${focusState ? `${s['coverFocused']} ` : ''} ${s['cover']}`}
 						style={{ width: labelWidth }}
+						data-testid='cover'
 					/>
 				)}
 			</div>
