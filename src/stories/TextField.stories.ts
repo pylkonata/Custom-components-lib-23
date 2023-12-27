@@ -24,19 +24,11 @@ export const OutlinedTextField: Story = {
 	},
 };
 
-// export const TextBtn: Story = {
-// 	args: {
-// 		variant: 'text',
-// 		size: 'small',
-// 		children: 'Text small button',
-// 	},
-// };
-
-// export const OutlinedDisabledBtn: Story = {
-// 	args: {
-// 		variant: 'outlined',
-// 		size: 'large',
-// 		children: 'Outlined large button',
-// 		disabled: true,
-// 	},
-// };
+export const FilledTextFieldWithError: Story = {
+	args: {
+		variant: 'filled',
+		label: 'First name',
+		error: true,
+		errorText: 'The first name is required',
+	},
+};
