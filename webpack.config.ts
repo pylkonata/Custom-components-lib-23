@@ -12,7 +12,7 @@ const config: webpack.Configuration = {
   entry: path.resolve(__dirname, 'src', 'index.ts'),
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist', 'src'),
     libraryTarget: 'umd',
     clean: true,
   },
