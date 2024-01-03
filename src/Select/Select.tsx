@@ -4,16 +4,21 @@ export type OptionType = {
 	value: string | number;
 	text: string;
 };
+
 export interface ISelectProps {
 	label: string;
 	disabled?: boolean;
 	options: OptionType[];
-	onChangeSelect: (option: OptionType) => void;
-	selected: OptionType;
+	// onChangeSelect: (option: OptionType) => void;
+	// selected: OptionType;
 }
 
-const Select = ({ label, disabled, options, selected, onChangeSelect }: ISelectProps) => {
+const Select = ({ label, disabled, options }: ISelectProps) => {
 	const [activeState, setActiveState] = useState(false);
+	const [selected, setSelected] = useState<OptionType>({
+		value: '',
+		text: '',
+	});
 	const [labelWidth, setLabelWidth] = useState(0);
 	const labelRef = useRef<HTMLLabelElement>(null);
 	const [showDropdown, setShowDropdown] = useState(false);
@@ -23,10 +28,13 @@ const Select = ({ label, disabled, options, selected, onChangeSelect }: ISelectP
 	}, [labelRef]);
 
 	const labelClasses = [s['label'], activeState ? s['active'] : ''].join(' ');
+
+	const onChangeSelect = (option: OptionType) => {
+		setSelected((prev) => ({ ...prev, ...option }));
+	};
 	const handleOnFocus = () => {
 		setActiveState(true);
 	};
-
 	const handleOnClick = () => {
 		setShowDropdown((prev) => !prev);
 	};
