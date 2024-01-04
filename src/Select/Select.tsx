@@ -9,28 +9,37 @@ export interface ISelectProps {
 	label: string;
 	disabled?: boolean;
 	options: OptionType[];
-	// onChangeSelect: (option: OptionType) => void;
-	// selected: OptionType;
+	onChangeSelect?: (option: OptionType) => void;
+	selected?: OptionType;
 }
 
-const Select = ({ label, disabled, options }: ISelectProps) => {
-	const [activeState, setActiveState] = useState(false);
-	const [selected, setSelected] = useState<OptionType>({
-		value: '',
-		text: '',
-	});
+const Select = ({ label, disabled, options, onChangeSelect, selected }: ISelectProps) => {
+	const [activeState, setActiveState] = useState(selected?.text ? true : false);
+	const [selectedOption, setSelectedOption] = useState<OptionType>(
+		selected
+			? selected
+			: {
+					value: '',
+					text: '',
+				}
+	);
 	const [labelWidth, setLabelWidth] = useState(0);
 	const labelRef = useRef<HTMLLabelElement>(null);
 	const [showDropdown, setShowDropdown] = useState(false);
 
 	useEffect(() => {
-		setLabelWidth(labelRef.current ? labelRef.current.getBoundingClientRect().width : 0);
+		setLabelWidth(labelRef.current ? labelRef.current.getBoundingClientRect().width + 4 : 0);
 	}, [labelRef]);
 
 	const labelClasses = [s['label'], activeState ? s['active'] : ''].join(' ');
+	const containerClasses = [s['container'], s['outlined'], disabled ? s['disabled'] : ''].join(' ');
+	const arrowClasses = [s['arrow'], showDropdown ? s['arrowUp'] : s['arrowDown']].join(' ');
 
-	const onChangeSelect = (option: OptionType) => {
-		setSelected((prev) => ({ ...prev, ...option }));
+	const onChangeSelected = (option: OptionType) => {
+		setSelectedOption((prev) => ({ ...prev, ...option }));
+		if (onChangeSelect) {
+			onChangeSelect(option);
+		}
 	};
 	const handleOnFocus = () => {
 		setActiveState(true);
@@ -40,7 +49,7 @@ const Select = ({ label, disabled, options }: ISelectProps) => {
 	};
 
 	const handleOnBlur = () => {
-		setActiveState(Boolean(selected.text));
+		setActiveState(Boolean(selectedOption.text));
 		setShowDropdown(false);
 	};
 
@@ -49,12 +58,9 @@ const Select = ({ label, disabled, options }: ISelectProps) => {
 		event: MouseEvent<HTMLLIElement, globalThis.MouseEvent>
 	) => {
 		event.stopPropagation();
-		onChangeSelect(option);
+		onChangeSelected(option);
 		setShowDropdown(false);
 	};
-
-	const containerClasses = [s['container'], s['outlined'], disabled ? s['disabled'] : ''].join(' ');
-	const arrowClasses = [s['arrow'], showDropdown ? s['arrowUp'] : s['arrowDown']].join(' ');
 
 	return (
 		<div
@@ -63,12 +69,15 @@ const Select = ({ label, disabled, options }: ISelectProps) => {
 			onBlur={handleOnBlur}
 			onClick={handleOnClick}
 			tabIndex={-1}
+			data-testid='containerSelect'
 		>
 			<div className={s['body']}>
-				<label className={labelClasses} ref={labelRef}>
+				<label className={labelClasses} ref={labelRef} data-testid='label'>
 					{label}
 				</label>
-				<p className={s['selectedText']}>{selected.text}</p>
+				<p className={s['selectedText']} data-testid='selectedText'>
+					{selectedOption.text}
+				</p>
 				<button className={s['arrowBtn']}>
 					<span className={arrowClasses}></span>
 				</button>
@@ -78,13 +87,14 @@ const Select = ({ label, disabled, options }: ISelectProps) => {
 				/>
 			</div>
 			{showDropdown && (
-				<ul className={s.list}>
+				<ul className={s.list} data-testid='list'>
 					{options?.map((option) => (
 						<li
 							key={option.value}
 							value={option.value}
-							className={`${s['item']} ${selected.text === option.text ? s['selected'] : ''}`}
+							className={`${s['item']} ${selectedOption.text === option.text ? s['selected'] : ''}`}
 							onClick={(e) => handleClickOption(option, e)}
+							data-testid={option.value}
 						>
 							{option.text}
 						</li>
