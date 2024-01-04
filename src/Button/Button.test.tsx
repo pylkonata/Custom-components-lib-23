@@ -5,7 +5,7 @@ import Button from './Button';
 describe('Button', () => {
 	test('render default button', () => {
 		render(<Button size='medium' children='Default button' />);
-		screen.debug();
+
 		const btn = screen.getByRole('button');
 		expect(btn).toBeInTheDocument();
 		expect(btn).toMatchSnapshot();
@@ -24,7 +24,7 @@ describe('Button', () => {
 				onClick={handleClick}
 			/>
 		);
-		screen.debug();
+
 		const btn = screen.getByRole('button');
 		expect(btn).toBeInTheDocument();
 		expect(btn).toMatchSnapshot();
@@ -38,7 +38,6 @@ describe('Button', () => {
 		const handleClick = jest.fn();
 		render(<Button variant='text' size='small' onClick={handleClick} children='Click button' />);
 
-		screen.debug();
 		const btn = screen.getByText(/click button/i);
 		expect(btn).toBeInTheDocument();
 		expect(btn).toHaveClass('btn', 'text', 'small');
