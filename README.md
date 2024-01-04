@@ -21,14 +21,14 @@ https://www.npmjs.com/package/custom-components-lib-23?activeTab=readme
 
 ### Set of components:
 1. Button - similar to https://mui.com/material-ui/react-button/
-Props:
+ Props:
 - variant: 'text' | 'contained' | 'outlined' , contained as default;
 - disabled;
 - onClick;
 - size: 'small' | 'medium' | 'large';
 
 2. TextField - https://mui.com/material-ui/react-text-field/
-Props:
+ Props:
 - variant: 'outlined' | 'filled' | 'standart';
 - error;
 - errorText;
@@ -36,7 +36,7 @@ Props:
 - disabled;
 
 3. Select -  https://mui.com/material-ui/react-select/
-Props:
+ Props:
 - label;
 - disabled;
 - options;
@@ -44,7 +44,7 @@ Props:
 - selected (passed selected option to component from parent component);
 
 4. Checkbox - https://mui.com/material-ui/react-checkbox/
-Props:
+ Props:
 - checked;
 - label;
 - color;
@@ -52,12 +52,12 @@ Props:
 - onChange;
 
 5. Switch- https://mui.com/material-ui/react-switch/
-Props:
+ Props:
 - checked;
 - onChange;
 
 6. Modal - https://mui.com/material-ui/react-modal/
-Props:
+ Props:
 - open;
 - onClose;
 - children;
