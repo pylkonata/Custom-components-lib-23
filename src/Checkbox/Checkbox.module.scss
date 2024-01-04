@@ -6,6 +6,7 @@
 }
 
 .container {
+  height: 2.625rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -20,14 +21,13 @@
 
 .checkbox {
   width: 2.625rem;
-  height: 2.625rem;
+  height: 100%;
   padding: 0.5625rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
 
   &:hover {
     border-radius: 50%;
@@ -43,5 +43,15 @@
 }
 
 .label {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  margin: 0;
   cursor: pointer;
+
+  &.disabled {
+    color: rgba(0, 0, 0, 0.38);
+  }
 }
