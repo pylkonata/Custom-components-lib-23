@@ -12,8 +12,9 @@
   background-color: transparent;
   cursor: pointer;
 
-  .disabled {
+  &.disabled {
     pointer-events: none;
+    cursor: default;
   }
 }
 
@@ -27,6 +28,7 @@
   border-radius: 50%;
   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
+
   &:hover {
     border-radius: 50%;
     background-color: #1976d20a;
@@ -36,5 +38,10 @@
   .input {
     width: 1.125rem;
     height: 1.125rem;
+    cursor: pointer;
   }
+}
+
+.label {
+  cursor: pointer;
 }

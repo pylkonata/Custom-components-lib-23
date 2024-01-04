@@ -21,15 +21,14 @@ const Checkbox = ({ checked = false, label, color, disabled = false, onChange }:
 		}
 	};
 	const handleOnHover = () => {
-		if (color) {
+		if (color && !disabled) {
 			setOnHover((prev) => !prev);
 		}
 	};
 	const checkboxStyle = {
 		backgroundColor: onHover && color ? color : '',
 	};
-	console.log(onHover);
-	console.log(color);
+
 	return (
 		<div className={containerClasses}>
 			<div

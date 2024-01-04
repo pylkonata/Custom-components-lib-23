@@ -5,6 +5,7 @@
   "main": "./dist/src/index.js",
   "scripts": {
     "test": "jest",
+    "pub": "npm run build && npm version patch && npm publish",
     "build": "webpack",
     "eslint": "eslint --ext .ts --ext .tsx src",
     "eslint:fix": "eslint --fix --ext .ts --ext .tsx src",
