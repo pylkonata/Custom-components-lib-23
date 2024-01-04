@@ -9,11 +9,11 @@ export interface ISelectProps {
 	label: string;
 	disabled?: boolean;
 	options: OptionType[];
-	onChangeSelect?: (option: OptionType) => void;
+	onChange?: (option: OptionType) => void;
 	selected?: OptionType;
 }
 
-const Select = ({ label, disabled, options, onChangeSelect, selected }: ISelectProps) => {
+const Select = ({ label, disabled, options, onChange, selected }: ISelectProps) => {
 	const [activeState, setActiveState] = useState(selected?.text ? true : false);
 	const [selectedOption, setSelectedOption] = useState<OptionType>(
 		selected
@@ -37,8 +37,8 @@ const Select = ({ label, disabled, options, onChangeSelect, selected }: ISelectP
 
 	const onChangeSelected = (option: OptionType) => {
 		setSelectedOption((prev) => ({ ...prev, ...option }));
-		if (onChangeSelect) {
-			onChangeSelect(option);
+		if (onChange) {
+			onChange(option);
 		}
 	};
 	const handleOnFocus = () => {
