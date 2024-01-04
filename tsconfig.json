@@ -18,10 +18,13 @@
     }
   },
   "include": [
-    "src"
+    "src",
+    "jest.config.ts",
+    "setupTests.ts"
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "./src/stories"
   ]
 }

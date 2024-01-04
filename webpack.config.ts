@@ -1,6 +1,12 @@
 import path from 'path';
 import webpack from 'webpack';
 
+const cssLoaderWithModules = {
+  loader: "css-loader",
+  options: {
+    modules: true,
+  },
+};
 const config: webpack.Configuration = {
   mode: 'production',
   entry: path.resolve(__dirname, 'src', 'index.ts'),
@@ -11,7 +17,7 @@ const config: webpack.Configuration = {
     clean: true,
   },
   resolve: {
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts', '.tsx', 'scss']
   },
   externals: {
     react: 'react'
@@ -19,8 +25,15 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.module\.s(a|c)ss$/,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          cssLoaderWithModules,
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
       },
       {
         test: /\.(ts|tsx)?$/,
