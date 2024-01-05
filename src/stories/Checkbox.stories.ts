@@ -26,7 +26,7 @@ export const DefaultCheckbox: Story = {
 export const CheckboxWithColorChecked: Story = {
 	args: {
 		checked: true,
-		color: '#d26c190a',
+		color: '#d26c19',
 	},
 };
 export const CheckboxDisabled: Story = {
