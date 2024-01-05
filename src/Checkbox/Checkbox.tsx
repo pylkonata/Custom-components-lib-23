@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useId, useRef, useState } from 'react';
+import { CSSProperties, ChangeEvent, useEffect, useId, useRef, useState, MouseEvent } from 'react';
 import s from './Checkbox.module.scss';
 
 import { transformToHexa } from './transformToHexa';
@@ -31,7 +31,13 @@ const Checkbox = ({ checked = false, label, color, disabled = false, onChange }:
 		backgroundColor: onHover && color ? colorBackRef.current : '',
 	};
 
-	const onChangeCheckbox = () => {
+	const onChangeCheckbox = (
+		event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLDivElement, globalThis.MouseEvent>
+	) => {
+		if (event.currentTarget !== event.target) {
+			return;
+		}
+
 		setIsChecked((prev) => !prev);
 		if (onChange) {
 			onChange();
@@ -44,12 +50,14 @@ const Checkbox = ({ checked = false, label, color, disabled = false, onChange }:
 	};
 
 	return (
-		<div className={containerClasses}>
+		<div className={containerClasses} data-testid='container'>
 			<div
 				className={s['checkbox']}
 				onMouseEnter={handleOnHover}
 				onMouseLeave={handleOnHover}
 				style={checkboxStyle}
+				onClick={onChangeCheckbox}
+				data-testid='checkboxWrap'
 			>
 				<input
 					type='checkbox'
@@ -62,7 +70,7 @@ const Checkbox = ({ checked = false, label, color, disabled = false, onChange }:
 				/>
 			</div>
 			{label && (
-				<label htmlFor={`input-${id}`} className={labelClasses}>
+				<label htmlFor={`input-${id}`} className={labelClasses} data-testid='label'>
 					{label}
 				</label>
 			)}
