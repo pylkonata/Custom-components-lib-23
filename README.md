@@ -55,6 +55,8 @@ https://www.npmjs.com/package/custom-components-lib-23?activeTab=readme
  Props:
 - checked;
 - onChange;
+- disabled;
+- label;
 
 6. Modal - https://mui.com/material-ui/react-modal/
  Props:
