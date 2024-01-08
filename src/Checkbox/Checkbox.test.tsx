@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Checkbox from './Checkbox';
 
 describe('Checkbox', () => {
@@ -28,7 +29,8 @@ describe('Checkbox', () => {
 		});
 	});
 
-	test('render checked and disabled Checkbox', () => {
+	test('render checked and disabled Checkbox', async () => {
+		const user = userEvent.setup();
 		const handleOnChange = jest.fn();
 		render(<Checkbox checked={true} disabled={true} onChange={handleOnChange} />);
 
@@ -39,20 +41,20 @@ describe('Checkbox', () => {
 		expect(checkbox).toBeChecked();
 
 		expect(container).toHaveClass('container', 'disabled');
-
-		fireEvent.change(checkbox);
+		await user.click(checkbox);
 		expect(handleOnChange).not.toHaveBeenCalled();
 	});
 
-	test('render Checkbox with onChange props', () => {
+	test('render Checkbox with onChange props', async () => {
+		const user = userEvent.setup();
 		const handleOnChange = jest.fn();
-		render(<Checkbox onChange={handleOnChange} />);
+		render(<Checkbox checked={false} onChange={handleOnChange} />);
 
 		const checkbox = screen.getByRole('checkbox');
 
 		expect(checkbox).not.toBeChecked();
-		fireEvent.click(checkbox);
-		expect(checkbox).toBeChecked();
+		await user.click(checkbox);
+		expect(screen.getByRole('checkbox')).toBeChecked();
 		expect(handleOnChange).toHaveBeenCalledTimes(1);
 	});
 });

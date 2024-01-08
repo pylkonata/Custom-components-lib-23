@@ -20,7 +20,7 @@ const Switch = ({ disabled, checked, onChange, label }: SwitchProps) => {
 	const wrapClasses = [s['wrapper'], disabled ? s['disabled'] : ''].join(' ');
 
 	return (
-		<div className={wrapClasses}>
+		<div className={wrapClasses} data-testid='wrapper'>
 			<div className={s['container']} onClick={onChangeSwitch} tabIndex={-1}>
 				<input
 					type='checkbox'
@@ -32,7 +32,7 @@ const Switch = ({ disabled, checked, onChange, label }: SwitchProps) => {
 				/>
 				<div className={s['circle']} />
 			</div>
-			<label htmlFor={`switch-${id}`} className={s['label']}>
+			<label htmlFor={`switch-${id}`} className={s['label']} data-testid='label'>
 				{label}
 			</label>
 		</div>
