@@ -5,7 +5,11 @@ import Modal from './Modal';
 describe('Modal', () => {
 	test('not render Modal', () => {
 		const closeModal = jest.fn();
-		render(<Modal open={false} onClose={closeModal}>Modal</Modal>);
+		render(
+			<Modal open={false} onClose={closeModal}>
+				Modal
+			</Modal>
+		);
 		const wrapper = screen.queryByTestId('wrapper');
 
 		expect(wrapper).not.toBeInTheDocument();
@@ -14,7 +18,11 @@ describe('Modal', () => {
 	test('render basic Modal', async () => {
 		const user = userEvent.setup();
 		const closeModal = jest.fn();
-		render(<Modal open={true} onClose={closeModal}>Modal</Modal>);
+		render(
+			<Modal open={true} onClose={closeModal}>
+				Modal
+			</Modal>
+		);
 		const wrapper = screen.queryByTestId('wrapper');
 		const backdrop = screen.queryByTestId('backdrop');
 
