@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  outline: 0;
+  border: 0;
+  margin: 0;
+}
+
+.wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.container {
+  position: relative;
+  width: 3.625rem;
+  height: 2.375rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover .circle:before {
+    content: '';
+    position: absolute;
+    width: 2.375rem;
+    height: 2.375rem;
+    top: -0.5625rem;
+    left: -0.5625rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  &:hover:has(.switch:checked) .circle:before {
+    background-color: rgba(25, 118, 210, 0.04);
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+input[type='checkbox'].switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  appearance: none;
+}
+
+input[type='checkbox'].switch::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  height: 0.875rem;
+  width: 2.125rem;
+  margin-right: 0.25rem;
+  border-radius: 0.4375rem;
+  background-color: rgb(0, 0, 0, 0.38);
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.circle {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  top: 50%;
+  left: 0.5625rem;
+  transform: translateY(-50%);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  pointer-events: none;
+  z-index: 11;
+}
+
+.label {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  cursor: pointer;
+}
+
+input[type='checkbox'].switch:checked+.circle {
+  position: absolute;
+  top: 50%;
+  left: 0.5625rem;
+  transform: translate(100%, -50%);
+  background-color: #1976d2;
+  transition: all 200ms ease-in-out;
+}
+
+input[type='checkbox'].switch:checked:disabled+.circle {
+  background-color: rgb(167, 202, 237);
+}
+
+input[type='checkbox'].switch:disabled+.circle {
+  background-color: #f5f5f5;
+}
+
+input[type='checkbox'].switch:checked:before {
+  transition: all 200ms ease-in-out;
+  background-color: rgb(25, 118, 210, 0.5);
+}
+
+input[type='checkbox'].switch:checked:disabled:before {
+  background-color: rgb(25, 118, 210, 0.12);
+}
+
+input[type='checkbox'].switch:disabled:before {
+  background-color: rgba(0, 0, 0, 0.12);
+}

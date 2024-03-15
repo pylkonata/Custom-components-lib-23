@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap');
+
+.container {
+  min-width: 7.5rem;
+  height: 3.5rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  position: relative;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375rem;
+  letter-spacing: 0.00938rem;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+
+  &.disabled {
+    pointer-events: none;
+  }
+}
+
+.label {
+  max-width: 85%;
+  top: 50%;
+  position: absolute;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.44rem;
+  letter-spacing: 0.00938rem;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 0 2px;
+  margin: 0;
+  transform: translateY(-50%);
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 999;
+
+  &.active {
+    font-size: 0.8125rem;
+    z-index: 1000;
+  }
+}
+
+.outlined {
+  padding: 0.875rem 2rem 0.875rem 0.875rem;
+  position: relative;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0.25rem;
+
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.87);
+    color: #000000;
+  }
+
+  &:focus {
+    border: 2px solid #1976d2;
+  }
+
+  &:focus .label {
+    color: #1976d2;
+  }
+
+  .cover {
+    position: absolute;
+    left: 0.6rem;
+    top: -0.125rem;
+    height: 0.125rem;
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+    visibility: hidden;
+  }
+
+  .coverActive {
+    visibility: visible;
+    background-color: white;
+    z-index: 999;
+  }
+
+  .label {
+    left: 1rem;
+    transition: top 0.2s, left 0.2s;
+
+    &.active {
+      left: 0.75rem;
+      top: -50%;
+      transform: translateY(65%);
+    }
+  }
+}
+
+.list {
+  min-width: 7.5rem;
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0px;
+  outline: 0px;
+  opacity: 1;
+  transition: opacity 251ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 167ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transform-origin: 60px 0px;
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+  overflow: hidden auto;
+  z-index: 1000;
+}
+
+.item {
+  min-height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px 16px;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  background-color: transparent;
+  border-radius: 0px;
+  user-select: none;
+  appearance: none;
+  color: inherit;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &.selected {
+    background-color: rgba(25, 118, 210, 0.08);
+
+    &:hover {
+      background-color: rgba(25, 118, 210, 0.12);
+    }
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.arrowBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5rem;
+  width: 1em;
+  height: 1em;
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  pointer-events: none;
+
+  .arrow {
+    user-select: none;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    padding: 0;
+  }
+
+  .arrowDown {
+    border-width: 5px 5px 0px 5px;
+    border-color: #0000008a transparent transparent transparent;
+  }
+
+  .arrowUp {
+    border-width: 0px 5px 5px 5px;
+    border-color: transparent transparent #0000008a transparent;
+  }
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0.25rem;
+  pointer-events: none;
+}
+
+.selectedText {
+  margin: 0;
+  height: auto;
+  min-height: 1.4375em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
